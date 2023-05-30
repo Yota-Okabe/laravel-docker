@@ -16,18 +16,23 @@
             <div class="mt-8">
                 <div class="w-full flex flex-col">
                     <label for="title" class="font-semibold mt-4">件名</label>
-                    <input type="text" name="title" class="w-auto py-2 border border-gray-300 rounded-md" id="title">
+                    <x-input-error :messages="$errors->get('title')" class="mt-2"/>
+                    <input type="text" name="title" class="w-auto py-2 border border-gray-300 rounded-md" id="title" value="{{old('title')}}">
                 </div>
-
-                <div class="w-full flex flex-col">
-                    <label for="body" class="font-semibold mt-4">本文</label>
-                    <textarea name="body" id="body" cols="30" rows="5" class="w-auto py-2 border border-gray-300 rounded-md"></textarea>
-                </div>
-
-                <x-primary-button class="mt-4">
-                    送信する
-                </x-primary-button>
             </div>
+
+
+            <div class="w-full flex flex-col">
+                <label for="body" class="font-semibold mt-4">本文</label>
+                <x-input-error :messages="$errors->get('body')" class="mt-2"/>
+                <textarea name="body" id="body" cols="30" rows="5" class="w-auto py-2 border border-gray-300 rounded-md">
+                    {{old('body')}}
+                </textarea>
+            </div>
+
+            <x-primary-button class="mt-4">
+                送信する
+            </x-primary-button>
         </form>
     </div>
 </x-app-layout>
