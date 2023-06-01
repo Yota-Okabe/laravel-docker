@@ -18,5 +18,10 @@ class PostController extends Controller
             ]);
         $post = Post::create($validated);
         return back()->with('message', '保存されました');
-    }  
+    } 
+
+    public function index() {
+        $posts=Post::all();
+        return view('post.index', compact('posts'));
+    }
 }
