@@ -15,13 +15,17 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:20',
             'body' => 'required|max:400',
-            ]);
+        ]);
+
+        $validated['user_id'] = auth()->id();
+
         $post = Post::create($validated);
         return back()->with('message', '保存されました');
     } 
 
     public function index() {
-        $posts=Post::all();
+        // $posts=Post::all();
+        $posts=Post::with('user')->get();
         return view('post.index', compact('posts'));
     }
 }
