@@ -36,8 +36,8 @@ require __DIR__.'/auth.php';
 Route::get('/test', [TestController::class, 'test'])
     ->name('test');
 
-Route::get('post/create', [PostController::class, 'create'])
-    ->middleware('auth', 'admin');
+Route::get('post/create', [PostController::class, 'create']);
+    // ->middleware('auth', 'admin');
 
 Route::post('post', [PostController::class, 'store'])
     ->name('post.store');
