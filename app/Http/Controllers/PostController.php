@@ -12,7 +12,7 @@ class PostController extends Controller
         return view('post.create');
     }
 
-    public function store (Request $request) {
+    public function update (Request $request, Post $post) {
         Gate::authorize('test');
         $validated = $request->validate([
             'title' => 'required|max:20',
@@ -21,8 +21,10 @@ class PostController extends Controller
 
         $validated['user_id'] = auth()->id();
 
+        $post->update($validated);
+
         $post = Post::create($validated);
-        return back()->with('message', '保存されました');
+        return back()->with('message', '更新しました');
     } 
 
     public function index() {
@@ -34,4 +36,9 @@ class PostController extends Controller
     public function show(Post $post) {
         return view('post.show', compact('post'));
     }
+
+    public function edit(Post $post) {
+        return view('post.edit', compact('post'));
+    }
+
 }
