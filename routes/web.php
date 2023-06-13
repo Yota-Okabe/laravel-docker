@@ -33,29 +33,28 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/test', [TestController::class, 'test'])
-    ->name('test');
+// Route::get('/test', [TestController::class, 'test'])
+//     ->name('test');
 
-Route::get('post/create', [PostController::class, 'create']);
-    // ->middleware('auth', 'admin');
+// Route::get('post/create', [PostController::class, 'create']);
+//     // ->middleware('auth', 'admin');
 
-Route::post('post', [PostController::class, 'store'])
-    ->name('post.store');
+// Route::post('post', [PostController::class, 'store'])
+//     ->name('post.store');
 
-Route::get('post', [PostController::class, 'index'])->name('post.index');
+// Route::get('post', [PostController::class, 'index'])->name('post.index');
 
-Route::get('post/show/{post}', [PostController::class, 'show'])
-    ->name('post.show');
+// Route::get('post/show/{post}', [PostController::class, 'show'])
+//     ->name('post.show');
 
-Route::get('post/{post}/edit', [PostController::class, 'edit'])
-    ->name('post.edit');
+// Route::get('post/{post}/edit', [PostController::class, 'edit'])
+//     ->name('post.edit');
 
-Route::patch('post/{post}', [PostController::class, 'update'])
-    ->name('post.update');
+// Route::patch('post/{post}', [PostController::class, 'update'])
+//     ->name('post.update');
 
-Route::delete('post/{post}', [PostController::class, 'destroy'])
-    ->name('post.destroy');
+// Route::delete('post/{post}', [PostController::class, 'destroy'])
+//     ->name('post.destroy');
 
-
-
-
+// 上記の処理を下記1行で可能 = リソースコントローラ
+Route::resource('post', PostController::class);
